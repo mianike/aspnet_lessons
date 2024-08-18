@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,29 +18,40 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapGet("/performancestates", async () =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+        var cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+        var memoryCounter = new PerformanceCounter("Memory", "% Committed Bytes In Use");
+        
+        await Task.Delay(1000);
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+        var states = new PerformanceState[5];
+        for (int i = 0; i < states.Length; i++)
+        {
+            states[i] = new PerformanceState
+            {
+                CurrentTime = TimeOnly.FromDateTime(DateTime.Now),
+                TotalCpuUtilizationPercentage = (int)cpuCounter.NextValue(),
+                OccupiedMemoryPercentage = (int)memoryCounter.NextValue(),
+                TotalRunningProcessesCount = Process.GetProcesses().Length
+            };
+            await Task.Delay(1000);
+        }
+        cpuCounter.Dispose();
+        memoryCounter.Dispose();
+
+    return states;
 })
-.WithName("GetWeatherForecast")
+.WithName("GetPerformanceStates")
 .WithOpenApi();
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+public class PerformanceState
+    {
+        //Added time to track system state over time
+        public TimeOnly CurrentTime { get; set; }
+        public int TotalCpuUtilizationPercentage { get; set; }
+        public int OccupiedMemoryPercentage { get; set; }
+        public int TotalRunningProcessesCount { get; set; }
+    }
