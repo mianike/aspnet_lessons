@@ -1,0 +1,32 @@
+[
+  {
+    "currentTime": "20:31:38.4365948",
+    "totalCpuUtilizationPercentage": 0,
+    "occupiedMemoryPercentage": 72,
+    "totalRunningProcessesCount": 324
+  },
+  {
+    "currentTime": "20:31:39.4568926",
+    "totalCpuUtilizationPercentage": 4,
+    "occupiedMemoryPercentage": 72,
+    "totalRunningProcessesCount": 324
+  },
+  {
+    "currentTime": "20:31:40.4645120",
+    "totalCpuUtilizationPercentage": 1,
+    "occupiedMemoryPercentage": 71,
+    "totalRunningProcessesCount": 324
+  },
+  {
+    "currentTime": "20:31:41.4725334",
+    "totalCpuUtilizationPercentage": 3,
+    "occupiedMemoryPercentage": 72,
+    "totalRunningProcessesCount": 324
+  },
+  {
+    "currentTime": "20:31:42.4810656",
+    "totalCpuUtilizationPercentage": 2,
+    "occupiedMemoryPercentage": 71,
+    "totalRunningProcessesCount": 324
+  }
+]
