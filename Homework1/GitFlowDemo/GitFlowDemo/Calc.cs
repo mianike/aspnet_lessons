@@ -6,5 +6,9 @@
         {
             return a + b;
         }
+        public static double Multiple(double a, double b)
+        {
+            return a * b;
+        }
     }
 }
