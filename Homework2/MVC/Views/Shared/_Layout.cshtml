@@ -7,13 +7,35 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ArsenalFans.styles.css" asp-append-version="true" />
-    <link rel="icon" type="image/x-icon" href="~/gunners.ico">
+    <link rel="icon" type="image/x-icon" href="~/data/gunners.ico">
+    <style>
+        .nav-link {
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+            .nav-link:hover {
+                background-color: #a50034;
+                color: white;
+            }
+
+        .navbar {
+            background-color: #f8f9fa;
+        }
+
+        .navbar-brand img {
+            margin-right: 5px;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/gunners.ico" alt="ArsenalFans Icon" style="width: 32px; height: 32px;"></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/data/gunners.ico" alt="ArsenalFans Icon" style="width: 32px; height: 32px;"> ArsenalFans
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
