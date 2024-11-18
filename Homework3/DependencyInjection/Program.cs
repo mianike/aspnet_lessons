@@ -2,7 +2,7 @@ using ArsenalFans.Services;
 using ArsenalFans.Services.Contracts;
 using ArsenalFans.DAL.Data;
 using Microsoft.EntityFrameworkCore;
-using SynopticumWebAPI;
+using ArsenalFans.DAL;
 using ArsenalFans.DAL.Repositories.Contracts;
 using ArsenalFans.DAL.Repositories;
 

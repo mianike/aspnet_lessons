@@ -1,6 +1,6 @@
 ﻿using ArsenalFans.DAL.Data;
 
-namespace SynopticumWebAPI
+namespace ArsenalFans.DAL
 {
     public static class DbInitializer
     {
