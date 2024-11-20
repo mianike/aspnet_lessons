@@ -20,7 +20,7 @@ namespace ArsenalFansDAL.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     FirstName = table.Column<string>(type: "text", nullable: false),
                     LastName = table.Column<string>(type: "text", nullable: false),
-                    WasBorn = table.Column<DateOnly>(type: "date", nullable: false),
+                    BirthDate = table.Column<DateOnly>(type: "date", nullable: false),
                     Position = table.Column<string>(type: "text", nullable: false),
                     Nationality = table.Column<string>(type: "text", nullable: false),
                     LastUpdatedUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)

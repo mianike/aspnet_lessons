@@ -52,7 +52,7 @@ namespace ArsenalFansDAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateOnly>("WasBorn")
+                    b.Property<DateOnly>("BirthDate")
                         .HasColumnType("date");
 
                     b.HasKey("Id");
