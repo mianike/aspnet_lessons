@@ -7,7 +7,7 @@ namespace ArsenalFansModel.Entities
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateOnly WasBorn { get; set; }
+        public DateOnly BirthDate { get; set; }
         public string Position { get; set; }
         public string Nationality { get; set; }
         public DateTime LastUpdatedUtc { get; set; }
