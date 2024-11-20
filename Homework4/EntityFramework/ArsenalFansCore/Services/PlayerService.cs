@@ -1,6 +1,8 @@
 ﻿using ArsenalFansCore.Contracts.Interfaces;
 using ArsenalFansDAL.Contracts.Interfaces;
+using ArsenalFansModel.Dto;
 using ArsenalFansModel.Entities;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 namespace ArsenalFansCore.Services
@@ -8,24 +10,15 @@ namespace ArsenalFansCore.Services
     public class PlayerService : IPlayerService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public PlayerService(IUnitOfWork unitOfWork)
+        public PlayerService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
-        public async Task<List<Player>> GetPlayersAsync()
-        {
-            var playerRepository = _unitOfWork.GetRepository<Player>();
-
-            var players = await playerRepository
-                .AsReadOnlyQueryable()
-                .ToListAsync();
-
-            return players;
-        }
-
-        public async Task<Player> GetPlayerByIdAsync(int id)
+        private async Task<Player> GetPlayerByIdAsync(int id)
         {
             var playerRepository = _unitOfWork.GetRepository<Player>();
 
@@ -35,45 +28,53 @@ namespace ArsenalFansCore.Services
 
             if (player == null)
             {
-                throw new KeyNotFoundException("Player not found");
+                throw new KeyNotFoundException($"Player with id {id} not found");
             }
 
             return player;
         }
 
-        public async Task<Player> GetPlayerByNameAsync(string name)
+        public async Task<IEnumerable<PlayerDto>> GetPlayerDtosAsync()
         {
             var playerRepository = _unitOfWork.GetRepository<Player>();
 
-            var player = await playerRepository
+            var players = await playerRepository
                 .AsReadOnlyQueryable()
-                .FirstOrDefaultAsync(
-                    p => string.Equals(p.FirstName, name, StringComparison.OrdinalIgnoreCase)
-                    || string.Equals(p.LastName, name, StringComparison.OrdinalIgnoreCase));
+                .ToListAsync();
 
-            if (player == null)
-            {
-                throw new KeyNotFoundException("Player not found");
-            }
+            var playerDtos = _mapper.Map<IEnumerable<PlayerDto>>(players);
 
-            return player;
+            return playerDtos;
         }
 
-        public async Task AddPlayerAsync(Player player)
+        public async Task<PlayerDto> GetPlayerDtoByIdAsync(int id)
         {
-            var playerRepository = _unitOfWork.GetRepository<Player>();
+            var player = await GetPlayerByIdAsync(id);
 
+            var playerDto = _mapper.Map<PlayerDto>(player);
+
+            return playerDto;
+        }
+
+        public async Task AddPlayerAsync(PlayerDto playerDto)
+        {
+            var player = _mapper.Map<Player>(playerDto);
             player.LastUpdatedUtc = DateTime.UtcNow;
+
+            var playerRepository = _unitOfWork.GetRepository<Player>();
             playerRepository.Create(player);
 
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task UpdatePlayerAsync(Player player)
+        public async Task UpdatePlayerAsync(PlayerDto playerDto)
         {
-            var playerRepository = _unitOfWork.GetRepository<Player>();
+            var player = await GetPlayerByIdAsync(playerDto.Id);
 
+            _mapper.Map(playerDto, player);
             player.LastUpdatedUtc = DateTime.UtcNow;
+
+            var playerRepository = _unitOfWork.GetRepository<Player>();
             playerRepository.Update(player);
 
             await _unitOfWork.SaveChangesAsync();
@@ -81,7 +82,6 @@ namespace ArsenalFansCore.Services
 
         public async Task DeletePlayerAsync(int id)
         {
-
             var player = await GetPlayerByIdAsync(id);
 
             var playerRepository = _unitOfWork.GetRepository<Player>();

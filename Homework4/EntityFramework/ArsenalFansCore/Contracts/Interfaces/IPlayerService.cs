@@ -1,14 +1,13 @@
-﻿using ArsenalFansModel.Entities;
+﻿using ArsenalFansModel.Dto;
 
 namespace ArsenalFansCore.Contracts.Interfaces
 {
     public interface IPlayerService : IService
     {
-        Task<List<Player>> GetPlayersAsync();
-        Task<Player> GetPlayerByIdAsync(int id);
-        Task<Player> GetPlayerByNameAsync(string name);
-        Task AddPlayerAsync(Player player);
-        Task UpdatePlayerAsync(Player player);
+        Task<IEnumerable<PlayerDto>> GetPlayerDtosAsync();
+        Task<PlayerDto> GetPlayerDtoByIdAsync(int id);
+        Task AddPlayerAsync(PlayerDto player);
+        Task UpdatePlayerAsync(PlayerDto player);
         Task DeletePlayerAsync(int id);
     }
 }

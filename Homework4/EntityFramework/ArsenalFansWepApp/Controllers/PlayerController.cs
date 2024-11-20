@@ -1,24 +1,30 @@
 ﻿using ArsenalFansCore.Contracts.Interfaces;
-using ArsenalFansModel.Entities;
+using ArsenalFansModel.Dto;
+using ArsenalFansWebApp.Models.ViewModels;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ArsenalFansWepApp.Controllers
+namespace ArsenalFansWebApp.Controllers
 {
     public class PlayerController : Controller
     {
         private readonly IPlayerService _playerService;
+        private readonly IMapper _mapper;
 
-        public PlayerController(IPlayerService playerService)
+        public PlayerController(IPlayerService playerService, IMapper mapper)
         {
             _playerService = playerService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var players = await _playerService.GetPlayersAsync();
-            
-            return View(players);
+            var playerDtos = await _playerService.GetPlayerDtosAsync();
+
+            var playerViewModels = _mapper.Map<List<PlayerViewModel>>(playerDtos);
+
+            return View(playerViewModels);
         }
 
         [HttpGet]
@@ -28,45 +34,53 @@ namespace ArsenalFansWepApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Player player)
+        public async Task<IActionResult> Create(PlayerViewModel playerView)
         {
             if (ModelState.IsValid)
             {
-                await _playerService.AddPlayerAsync(player);
-                
+                var playerDto = _mapper.Map<PlayerDto>(playerView);
+
+                await _playerService.AddPlayerAsync(playerDto);
+
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(player);
+            return View(playerView);
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var player = await _playerService.GetPlayerByIdAsync(id);
+            var playerDto = await _playerService.GetPlayerDtoByIdAsync(id);
 
-            return View(player);
+            var playerViewModel = _mapper.Map<PlayerViewModel>(playerDto);
+
+            return View(playerViewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Player player)
+        public async Task<IActionResult> Edit(PlayerViewModel playerView)
         {
             if (ModelState.IsValid)
             {
-                await _playerService.UpdatePlayerAsync(player);
-                
+                var playerDto = _mapper.Map<PlayerDto>(playerView);
+
+                await _playerService.UpdatePlayerAsync(playerDto);
+
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(player);
+            return View(playerView);
         }
 
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var player = await _playerService.GetPlayerByIdAsync(id);
+            var playerDto = await _playerService.GetPlayerDtoByIdAsync(id);
 
-            return View(player);
+            var playerViewModel = _mapper.Map<PlayerViewModel>(playerDto);
+
+            return View(playerViewModel);
         }
 
         [HttpPost]
