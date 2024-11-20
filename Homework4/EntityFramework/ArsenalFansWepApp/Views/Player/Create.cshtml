@@ -1,4 +1,4 @@
-﻿@model ArsenalFansModel.Entities.Player
+﻿@model ArsenalFansWebApp.Models.ViewModels.PlayerViewModel;
 @{
     ViewData["Title"] = "Create player";
 }
@@ -76,9 +76,9 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="WasBorn" class="control-label"></label>
-        <input asp-for="WasBorn" class="form-input" type="date" />
-        <span asp-validation-for="WasBorn" class="text-danger"></span>
+        <label asp-for="BirthDate" class="control-label"></label>
+        <input asp-for="BirthDate" class="form-input" type="date" />
+        <span asp-validation-for="BirthDate" class="text-danger"></span>
     </div>
 
     <div class="form-group">

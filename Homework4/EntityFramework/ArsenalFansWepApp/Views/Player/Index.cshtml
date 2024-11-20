@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ArsenalFansModel.Entities.Player>
+﻿@model IEnumerable<ArsenalFansWebApp.Models.ViewModels.PlayerViewModel>
 @{
     ViewData["Title"] = "Players";
 }
@@ -68,7 +68,8 @@
             <th>First name</th>
             <th>Last name</th>
             <th>Position</th>
-            <th>Was born</th>
+            <th>Birth Date</th>
+            <th>Age</th>
             <th>Nationality</th>
             <th>Actions</th>
         </tr>
@@ -80,7 +81,8 @@
                 <td>@player.FirstName</td>
                 <td>@player.LastName</td>
                 <td>@player.Position</td>
-                <td>@player.WasBorn</td>
+                <td>@player.BirthDate</td>
+                <td>@player.Age</td>
                 <td>@player.Nationality</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@player.Id" class="btn btn-warning">Edit</a>
