@@ -1,8 +1,6 @@
-using ArsenalFansCore;
-using ArsenalFansDAL;
-using ArsenalFansWepApp.Startup;
+using ArsenalFansWebApp.Startup;
 
-namespace ArsenalFansWepApp
+namespace ArsenalFansWebApp
 {
     public class Program
     {
@@ -10,14 +8,12 @@ namespace ArsenalFansWepApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddControllersWithViews();
-
-            ArsenalFansDALModule.RegisterModule(builder.Services, builder.Configuration);
-            ArsenalFansCoreModule.RegisterModule(builder.Services);
+            ArsenalFansWebAppModule.ConfigureServices(builder);
 
             var app = builder.Build();
 
-            DbInitializer.InitializeDb(app.Services);
+            bool.TryParse(builder.Configuration["SeedDb"], out var seedDb);
+            await DbInitializer.InitializeDb(app.Services, seedDb);
 
             if (!app.Environment.IsDevelopment())
             {
