@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArsenalFansWepApp", "ArsenalFansWepApp\ArsenalFansWepApp.csproj", "{F44BC955-C373-475B-A943-8522A0A942A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArsenalFansWebApp", "ArsenalFansWepApp\ArsenalFansWebApp.csproj", "{F44BC955-C373-475B-A943-8522A0A942A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArsenalFansCore", "ArsenalFansCore\ArsenalFansCore.csproj", "{3E0C7CC4-FC74-4B9B-B754-4EA7B864A2A1}"
 EndProject
