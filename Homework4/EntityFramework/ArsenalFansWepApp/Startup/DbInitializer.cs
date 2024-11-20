@@ -1,17 +1,23 @@
 ﻿using ArsenalFansDAL.Contexts;
+using ArsenalFansDAL.DbSeed;
 using Microsoft.EntityFrameworkCore;
 
-namespace ArsenalFansWepApp.Startup
+namespace ArsenalFansWebApp.Startup
 {
     public static class DbInitializer
     {
-        public static void InitializeDb(IServiceProvider services)
+        public static async Task InitializeDb(IServiceProvider services, bool seedDb)
         {
             using var scope = services.CreateScope();
 
-            var dbcontext = scope.ServiceProvider.GetRequiredService<ArsenalDbContext>();
+            var dbContext = scope.ServiceProvider.GetRequiredService<ArsenalDbContext>();
 
-            dbcontext.Database.Migrate();
+            dbContext.Database.Migrate();
+
+            if (seedDb)
+            {
+                await ArsenalDbSeed.PlayerSeed(dbContext);
+            }
         }
     }
 }

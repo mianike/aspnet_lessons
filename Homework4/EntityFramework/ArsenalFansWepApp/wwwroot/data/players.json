@@ -1,0 +1,79 @@
+[
+  {
+    "FirstName": "David",
+    "LastName": "Raya",
+    "BirthDate": "1995-09-15",
+    "Position": "Goalkeeper",
+    "Nationality": "Spain"
+  },
+  {
+    "FirstName": "Benjamin",
+    "LastName": "White",
+    "BirthDate": "1997-10-08",
+    "Position": "Defender",
+    "Nationality": "England"
+  },
+  {
+    "FirstName": "William",
+    "LastName": "Saliba",
+    "BirthDate": "2001-03-24",
+    "Position": "Defender",
+    "Nationality": "France"
+  },
+  {
+    "FirstName": "Gabriel",
+    "LastName": "Magalhaes",
+    "BirthDate": "1997-12-19",
+    "Position": "Defender",
+    "Nationality": "Brazil"
+  },
+  {
+    "FirstName": "Jurrien",
+    "LastName": "Timber",
+    "BirthDate": "2001-06-17",
+    "Position": "Defender",
+    "Nationality": "Netherlands"
+  },
+  {
+    "FirstName": "Declan",
+    "LastName": "Rice",
+    "BirthDate": "1999-01-14",
+    "Position": "Midfielder",
+    "Nationality": "England"
+  },
+  {
+    "FirstName": "Mikel",
+    "LastName": "Merino",
+    "BirthDate": "1996-06-22",
+    "Position": "Midfielder",
+    "Nationality": "Spain"
+  },
+  {
+    "FirstName": "Martin",
+    "LastName": "Odegaard",
+    "BirthDate": "1998-12-17",
+    "Position": "Midfielder",
+    "Nationality": "Norway"
+  },
+  {
+    "FirstName": "Bukayo",
+    "LastName": "Saka",
+    "BirthDate": "2001-09-05",
+    "Position": "Forward",
+    "Nationality": "England"
+  },
+  {
+    "FirstName": "Leandro",
+    "LastName": "Trossard",
+    "BirthDate": "1994-12-04",
+    "Position": "Forward",
+    "Nationality": "Belgium"
+  },
+  {
+    "FirstName": "Kai",
+    "LastName": "Havertz",
+    "BirthDate": "1999-06-11",
+    "Position": "Forward",
+    "Nationality": "Germany"
+  }
+]
