@@ -1,4 +1,4 @@
-namespace ArsenalFansWepApp.Models;
+namespace ArsenalFansWebApp.Models;
 
 public class ErrorViewModel
 {
