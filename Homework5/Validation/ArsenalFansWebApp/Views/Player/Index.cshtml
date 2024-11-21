@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ArsenalFansWebApp.Models.ViewModels.PlayerViewModel>
+@{
+    ViewData["Title"] = "Players";
+}
+<style>
+    h1 {
+        color: #a50034;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        background-color: #a50034;
+        border-color: #a50034;
+    }
+    
+    .btn-primary:hover {
+        background-color: #cc0000;
+        transform: scale(1.05);
+    }
+
+    .btn-warning {
+        background-color: #ffd700;
+        border-color: #ffd700;
+    }
+
+    .btn-danger {
+        background-color: #333333;
+        border-color: #333333;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .table th, .table td {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .table th {
+        background-color: #a50034;
+        color: white;
+    }
+
+    .table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .table tr:hover {
+        background-color: #f1f1f1;
+    }
+</style>
+
+<h1>Fantasy players</h1>
+<h3>Welcome to the fantasy players page. You can use real or fictitious players. Good luck!</h3>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create new</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Position</th>
+            <th>Birth Date</th>
+            <th>Age</th>
+            <th>Nationality</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var player in Model)
+        {
+            <tr>
+                <td>@player.FirstName</td>
+                <td>@player.LastName</td>
+                <td>@player.Position</td>
+                <td>@player.BirthDate</td>
+                <td>@player.Age</td>
+                <td>@player.Nationality</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@player.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@player.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
