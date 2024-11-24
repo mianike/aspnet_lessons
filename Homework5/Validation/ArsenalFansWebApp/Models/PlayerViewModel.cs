@@ -1,4 +1,4 @@
-﻿namespace ArsenalFansWebApp.Models.ViewModels
+﻿namespace ArsenalFansWebApp.Models
 {
     public class PlayerViewModel
     {

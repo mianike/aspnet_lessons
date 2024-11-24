@@ -1,6 +1,6 @@
 ﻿using ArsenalFansModel.Dto;
 using ArsenalFansModel.Entities;
-using ArsenalFansWebApp.Models.ViewModels;
+using ArsenalFansWebApp.Models;
 using AutoMapper;
 
 namespace ArsenalFansWebApp.Mapping

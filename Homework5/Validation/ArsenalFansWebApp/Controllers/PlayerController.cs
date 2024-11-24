@@ -1,6 +1,6 @@
 ﻿using ArsenalFansCore.Contracts.Interfaces;
 using ArsenalFansModel.Dto;
-using ArsenalFansWebApp.Models.ViewModels;
+using ArsenalFansWebApp.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
